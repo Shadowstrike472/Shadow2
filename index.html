@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Meghna 💖</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    text-align: center;
+    background: black;
+    color: white;
+}
+
+/* Center content */
+.center {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+/* Hide */
+.hidden {
+    display: none;
+}
+
+/* Box image */
+#box {
+    width: 200px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#box:hover {
+    transform: scale(1.1);
+}
+
+/* Video */
+video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Slideshow */
+#slide {
+    width: 80%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+/* Button */
+button {
+    padding: 12px 25px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🎁 BOX -->
+<div id="start" class="center">
+    <h1>For Meghna 💖</h1>
+    <img id="box" src="box.png" onclick="startVideo()">
+    <p>Tap the gift 🎁</p>
+</div>
+
+<!-- 🎬 VIDEO -->
+<div id="videoSection" class="hidden">
+    <video id="video" autoplay>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+</div>
+
+<!-- ❓ QUESTION -->
+<div id="question" class="center hidden">
+    <h2>What name do I call you most often? 😏</h2>
+    <input id="answer">
+    <br><br>
+    <button onclick="check()">Submit</button>
+    <p id="result"></p>
+</div>
+
+<!-- 📸 MEMORIES -->
+<div id="memories" class="center hidden">
+    <h2>Our Memories 💖</h2>
+    <img id="slide" src="photo1.jpg">
+</div>
+
+<script>
+
+/* Start video */
+function startVideo() {
+    document.getElementById("start").classList.add("hidden");
+    document.getElementById("videoSection").classList.remove("hidden");
+
+    let vid = document.getElementById("video");
+
+    vid.onended = function() {
+        document.getElementById("videoSection").classList.add("hidden");
+        document.getElementById("question").classList.remove("hidden");
+    };
+}
+
+/* Question */
+function check() {
+    let ans = document.getElementById("answer").value.toLowerCase();
+
+    if (ans === "rowdy") {
+        document.getElementById("question").classList.add("hidden");
+        document.getElementById("memories").classList.remove("hidden");
+        startSlide();
+    } else {
+        document.getElementById("result").innerHTML = "Try again 😜";
+    }
+}
+
+/* Slideshow */
+let imgs = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg","photo8.jpg","photo9.jpg","photo10.jpg","photo11.jpg","photo12.jpg","photo13.jpg","photo14.jpg","photo15.jpg","photo16.jpg","photo17.jpg","photo18.jpg","photo19.jpg","photo20.jpg","photo21.jpg","photo22.jpg","photo23.jpg","photo24.jpg","photo25.jpg","photo26.jpg"];
+let index = 0;
+
+function startSlide() {
+    setInterval(()=>{
+        index = (index+1)%imgs.length;
+        document.getElementById("slide").src = imgs[index];
+    },2000);
+}
+
+</script>
+
+</body>
+</html>
